@@ -14,7 +14,7 @@ fn main() {
         "Vector after scaling: scaled_vec = my_mat * my_vec = \n{:?}",
         scaled_vec
     );
-    // two successive scaling transforms:   
+    // two successive scaling transforms:
     // get total scaling matrix after another scaling transformation:
     let scaling_mat = my_mat * Matrix4::from_nonuniform_scale(1.0, 0.5, 0.3);
     // get final scaled vector

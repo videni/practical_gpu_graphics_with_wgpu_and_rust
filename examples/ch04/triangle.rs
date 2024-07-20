@@ -286,6 +286,7 @@ fn main() {
                             } => target.exit(),
                             WindowEvent::Resized(new_size) => {
                                 state.resize(*new_size);
+                                state.render()
                             }
                             // WindowEvent::ScaleFactorChanged {
                             //         inner_size_writer: InnerSizeWriter{
@@ -293,22 +294,19 @@ fn main() {
                             //         }, .. } => {
                             //     state.resize(new_inner_size);
                             // }
+                            WindowEvent::RedrawRequested => {
+                                state.update();
+                                match state.render() {
+                                    Ok(_) => {}
+                                    Err(wgpu::SurfaceError::Lost) => state.resize(state.size),
+                                    Err(wgpu::SurfaceError::OutOfMemory) => target.exit(),
+                                    Err(e) => eprintln!("{:?}", e),
+                                }
+                            }
                             _ => {}
                         }
                     }
                 };
-                match event {
-                    WindowEvent::RedrawRequested => {
-                        state.update();
-                        match state.render() {
-                            Ok(_) => {}
-                            Err(wgpu::SurfaceError::Lost) => state.resize(state.size),
-                            Err(wgpu::SurfaceError::OutOfMemory) => target.exit(),
-                            Err(e) => eprintln!("{:?}", e),
-                        }
-                    }
-                    _ => {}
-                }
             }
         })
         .unwrap();

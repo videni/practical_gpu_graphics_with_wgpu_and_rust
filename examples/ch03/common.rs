@@ -1,3 +1,4 @@
+use log::*;
 use wgpu::{IndexFormat, PrimitiveTopology, ShaderSource};
 use winit::{
     event::{Event, WindowEvent},
@@ -95,7 +96,6 @@ pub async fn run(
         .get_default_config(&adapter, size.width, size.height)
         .unwrap();
     surface.configure(&device, &config);
-
     let window = &window;
     event_loop
         .run(move |event, target| {
