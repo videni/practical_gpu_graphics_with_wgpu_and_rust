@@ -1,0 +1,40 @@
+[package]
+name = "wgpu_step_by_step"
+version = "0.1.0"
+edition = "2021"
+
+[[example]]   
+name = "ch03_point_line"   
+path = "examples/ch03/point_line.rs"   
+
+[[example]]   
+name = "ch03_triangles"   
+path = "examples/ch03/triangles.rs"   
+
+[[example]]
+name = "ch04_triangle"   
+path = "examples/ch04/triangle.rs"   
+
+
+[[example]]
+name = "ch05_scaling"   
+path = "examples/ch05/scaling.rs"   
+
+
+[[example]]
+name = "ch05_translation"   
+path = "examples/ch05/translation.rs"   
+
+[dependencies]
+wgpu = "22.0.0"
+cgmath = "0.18.0"
+env_logger = "0.11"
+futures = "0.3.30"
+gfx-hal = "0.9.0"
+image = "0.25.1"
+log = "0.4"
+pollster = "0.3.0"
+winit = "0.30.4"
+bytemuck = { version = "1.16", features = ["derive"] }
+anyhow = "1.0"
+rand ="0.8"
